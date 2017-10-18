@@ -5,8 +5,6 @@ import ngRedux from 'ng-redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
-// import ReduxService from './services/ReduxService.js';
-
 import { ReduxDirective } from './directives/ReduxDirective.js';
 import { IntervalValidatorDirective } from './directives/IntervalValidatorDirective.js';
 import { MaxLengthValidatorDirective } from './directives/MaxLengthValidatorDirective.js';
@@ -16,8 +14,8 @@ import { OnlyNumberDirective } from './directives/OnlyNumberDirective.js';
 import { FormatInputDirective } from './directives/FormatInputDirective.js';
 
 import pageComponent from './components/page/pageComponent.js';
-import myInputComponent from './components/input/myInputComponent.js';
-import formFilterComponent from './components/form-filter/formFilterComponent.js';
+import moneyInputComponent from './components/input/moneyInputComponent.js';
+import passwordInputComponent from './components/input/passwordInputComponent.js';
 import cardComponent from './components/cards/cardComponent.js';
 
 import { rootReducer } from './reducers';
@@ -33,11 +31,10 @@ angular
             .createStoreWith(rootReducer, [logger, thunk]);
 
     })
-    // .service('reduxService', ReduxService)
 
     .component('page', pageComponent)
-    .component('formFilter', formFilterComponent)
-    .component('myInput', myInputComponent)
+    .component('moneyInput', moneyInputComponent)
+    .component('passwordInput', passwordInputComponent)
     .component('card', cardComponent)
 
     .directive('reduxDirective', ReduxDirective)

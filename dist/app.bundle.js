@@ -1427,7 +1427,9 @@ function compose() {
 
 "use strict";
 const TODOS = {
-    THE_FIELD_PRICE_STATUS: 'THE_FIELD_PRICE_STATUS'
+    THE_FORM_FILTER_STATUS: 'THE_FORM_FILTER_STATUS',
+    THE_FIELD_PRICE_STATUS: 'THE_FIELD_PRICE_STATUS',
+    THE_FIELD_PASSWORD_STATUS: 'THE_FIELD_PASSWORD_STATUS'
 };
 /* harmony export (immutable) */ __webpack_exports__["a"] = TODOS;
 
@@ -1457,8 +1459,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_OnlyNumberDirective_js__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_FormatInputDirective_js__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_page_pageComponent_js__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_input_myInputComponent_js__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_form_filter_formFilterComponent_js__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_input_moneyInputComponent_js__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_input_passwordInputComponent_js__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_cards_cardComponent_js__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__reducers__ = __webpack_require__(140);
 
@@ -1467,8 +1469,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
-// import ReduxService from './services/ReduxService.js';
 
 
 
@@ -1487,10 +1487,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __WEBPACK_IMPORTED_MODULE_0_angular___default.a.module('app', [__WEBPACK_IMPORTED_MODULE_1_angular_messages___default.a, __WEBPACK_IMPORTED_MODULE_3_ng_redux__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_angular_ui_router___default.a]).config($ngReduxProvider => {
     $ngReduxProvider.createStoreWith(__WEBPACK_IMPORTED_MODULE_17__reducers__["a" /* rootReducer */], [__WEBPACK_IMPORTED_MODULE_4_redux_logger___default.a, __WEBPACK_IMPORTED_MODULE_5_redux_thunk___default.a]);
-})
-// .service('reduxService', ReduxService)
-
-.component('page', __WEBPACK_IMPORTED_MODULE_13__components_page_pageComponent_js__["a" /* default */]).component('formFilter', __WEBPACK_IMPORTED_MODULE_15__components_form_filter_formFilterComponent_js__["a" /* default */]).component('myInput', __WEBPACK_IMPORTED_MODULE_14__components_input_myInputComponent_js__["a" /* default */]).component('card', __WEBPACK_IMPORTED_MODULE_16__components_cards_cardComponent_js__["a" /* default */]).directive('reduxDirective', __WEBPACK_IMPORTED_MODULE_6__directives_ReduxDirective_js__["a" /* ReduxDirective */]).directive('interval', __WEBPACK_IMPORTED_MODULE_7__directives_IntervalValidatorDirective_js__["a" /* IntervalValidatorDirective */]).directive('maxLength', __WEBPACK_IMPORTED_MODULE_8__directives_MaxLengthValidatorDirective_js__["a" /* MaxLengthValidatorDirective */]).directive('minLength', __WEBPACK_IMPORTED_MODULE_9__directives_MinLengthValidatorDirective_js__["a" /* MinLengthValidatorDirective */]).directive('customPattern', __WEBPACK_IMPORTED_MODULE_10__directives_PatternValidatorDirective_js__["a" /* PatternValidatorDirective */]).directive('onlyNumber', __WEBPACK_IMPORTED_MODULE_11__directives_OnlyNumberDirective_js__["a" /* OnlyNumberDirective */]).directive('formatInput', ['$filter', __WEBPACK_IMPORTED_MODULE_12__directives_FormatInputDirective_js__["a" /* FormatInputDirective */]]);
+}).component('page', __WEBPACK_IMPORTED_MODULE_13__components_page_pageComponent_js__["a" /* default */]).component('moneyInput', __WEBPACK_IMPORTED_MODULE_14__components_input_moneyInputComponent_js__["a" /* default */]).component('passwordInput', __WEBPACK_IMPORTED_MODULE_15__components_input_passwordInputComponent_js__["a" /* default */]).component('card', __WEBPACK_IMPORTED_MODULE_16__components_cards_cardComponent_js__["a" /* default */]).directive('reduxDirective', __WEBPACK_IMPORTED_MODULE_6__directives_ReduxDirective_js__["a" /* ReduxDirective */]).directive('interval', __WEBPACK_IMPORTED_MODULE_7__directives_IntervalValidatorDirective_js__["a" /* IntervalValidatorDirective */]).directive('maxLength', __WEBPACK_IMPORTED_MODULE_8__directives_MaxLengthValidatorDirective_js__["a" /* MaxLengthValidatorDirective */]).directive('minLength', __WEBPACK_IMPORTED_MODULE_9__directives_MinLengthValidatorDirective_js__["a" /* MinLengthValidatorDirective */]).directive('customPattern', __WEBPACK_IMPORTED_MODULE_10__directives_PatternValidatorDirective_js__["a" /* PatternValidatorDirective */]).directive('onlyNumber', __WEBPACK_IMPORTED_MODULE_11__directives_OnlyNumberDirective_js__["a" /* OnlyNumberDirective */]).directive('formatInput', ['$filter', __WEBPACK_IMPORTED_MODULE_12__directives_FormatInputDirective_js__["a" /* FormatInputDirective */]]);
 
 /***/ }),
 /* 52 */
@@ -46667,16 +46664,37 @@ class ReduxDirective {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__ = __webpack_require__(50);
 
 
+const setFormFilterStatus = (error, isValid, isSubmitted) => {
+    return {
+        type: __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["a" /* TODOS */].THE_FORM_FILTER_STATUS,
+        payload: {
+            error: error,
+            isValid: isValid,
+            isSubmitted: isSubmitted
+        }
+    };
+};
 const setPriceFieldStatus = (value, error, isValid) => {
     return {
         type: __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["a" /* TODOS */].THE_FIELD_PRICE_STATUS,
-        value: value,
-        payload: error,
-        isValid: isValid
+        payload: {
+            value: value,
+            error: error,
+            isValid: isValid
+        }
+    };
+};
+const setPasswordFieldStatus = (error, isValid) => {
+    return {
+        type: __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["a" /* TODOS */].THE_FIELD_PASSWORD_STATUS,
+        payload: {
+            error: error,
+            isValid: isValid
+        }
     };
 };
 
-/* harmony default export */ __webpack_exports__["a"] = ({ setPriceFieldStatus });
+/* harmony default export */ __webpack_exports__["a"] = ({ setFormFilterStatus, setPriceFieldStatus, setPasswordFieldStatus });
 
 /***/ }),
 /* 130 */
@@ -46853,7 +46871,9 @@ const pageComponent = {
     templateUrl: 'app/components/page/pageTemplate.html',
     controller: PageController,
     bindings: {
-        setPriceFieldStatus: '&'
+        setFormFilterStatus: '&',
+        setPriceFieldStatus: '&',
+        setPasswordFieldStatus: '&'
     }
 };
 
@@ -46864,37 +46884,38 @@ const pageComponent = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class myInputController {
+class moneyInputController {
     constructor() {}
 }
 
-const myInputComponent = {
-    templateUrl: 'app/components/input/myInputTemplate.html',
-    controller: myInputController,
+const moneyInputComponent = {
+    templateUrl: 'app/components/input/moneyInputTemplate.html',
+    controller: moneyInputController,
     bindings: {
         setPriceFieldStatus: '&'
     }
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (myInputComponent);
+/* harmony default export */ __webpack_exports__["a"] = (moneyInputComponent);
 
 /***/ }),
 /* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class formFilterController {
+class passwordInputController {
     constructor() {}
 }
 
-const formFilterComponent = {
-    templateUrl: 'app/components/form-filter/formFilterTemplate.html',
+const passwordInputComponent = {
+    templateUrl: 'app/components/input/passwordInputTemplate.html',
+    controller: passwordInputController,
     bindings: {
-        setPriceFieldStatus: '&'
+        setPasswordFieldStatus: '&'
     }
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (formFilterComponent);
+/* harmony default export */ __webpack_exports__["a"] = (passwordInputComponent);
 
 /***/ }),
 /* 139 */
@@ -46939,13 +46960,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 const initialState = {
-    valid: false
+    isValidFilterForm: false,
+    isFilterFormSubmitted: false,
+    isValidPriceInput: false,
+    isValidPasswordInput: false
 };
 
 const todosReducer = (state = initialState, action) => {
     switch (action.type) {
+        case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["a" /* TODOS */].THE_FORM_FILTER_STATUS:
+            return _extends({}, state, { isValidFilterForm: action.payload.isValid, isFilterFormSubmitted: action.payload.isSubmitted });
         case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["a" /* TODOS */].THE_FIELD_PRICE_STATUS:
-            return _extends({}, state, { valid: action.payload });
+            return _extends({}, state, { isValidPriceInput: action.payload.isValid });
+        case __WEBPACK_IMPORTED_MODULE_0__constants_actionTypes__["a" /* TODOS */].THE_FIELD_PASSWORD_STATUS:
+            return _extends({}, state, { isValidPasswordInput: action.payload.isValid });
         default:
             return state;
     }
